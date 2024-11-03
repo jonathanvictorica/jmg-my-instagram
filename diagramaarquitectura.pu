@@ -1,0 +1,33 @@
+@startuml
+actor User as user
+
+rectangle "Frontend" {
+    [React App]
+}
+
+rectangle "Backend" {
+    [API REST]
+    [gRPC Service]
+}
+
+rectangle "Database" {
+    [PostgreSQL]
+}
+
+rectangle "Messaging" {
+    [Kafka Broker]
+}
+
+rectangle "Other Services" {
+    [Notification Service]
+    [Analytics Service]
+}
+
+user --> "Frontend" : Interacts
+"Frontend" --> "Backend" : HTTP/gRPC
+"Backend" --> "Database" : CRUD Operations
+"Backend" --> "Messaging" : Produce Messages
+"Messaging" --> "Backend" : Consume Events
+"Other Services" --> "Messaging" : Listen for Events
+
+@enduml
