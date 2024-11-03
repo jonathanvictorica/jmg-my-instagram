@@ -87,3 +87,80 @@
     - `image_not_found`: Alguna imagen referenciada no se encontró.
     - `user_not_found`: Algún usuario etiquetado no se encontró.
     - `hashtag_not_found`: Algún hashtag referenciado no se encontró.
+---
+
+## 5. Obtener Información de Perfil
+- **Endpoint**: `GET /api/v1/users/{userId}/info-profile`
+- **Método**: GET
+- **Propósito**: Recuperar la información del perfil del usuario especificado.
+- **Parámetros**:
+  - `userId` (en la URL): ID del usuario cuyo perfil se desea ver.
+- **Respuesta**:
+  - **200 OK**:
+    ```json
+    {
+      "username": "nombre_usuario",
+      "description": "Descripción del perfil",
+      "image_url": "url_de_imagen_de_perfil"
+    }
+    ```
+  - **Errores**:
+    - `user_not_found`: No se encontró al usuario con el `userId` especificado.
+
+---
+
+## 6. Obtener Publicaciones por Usuario
+- **Endpoint**: `GET /api/v1/posts/get-by-user/{userId}`
+- **Método**: GET
+- **Propósito**: Obtener las publicaciones asociadas al usuario especificado.
+- **Parámetros**:
+  - `userId` (en la URL): ID del usuario cuyas publicaciones se desean ver.
+- **Respuesta**:
+  - **200 OK**:
+    ```json
+    [
+      {
+        "id": "post_id_1",
+        "title": "Título de la publicación",
+        "image_url": "url_de_imagen_principal"
+      },
+      {
+        "id": "post_id_2",
+        "title": "Otro título de publicación",
+        "image_url": "url_de_otra_imagen"
+      }
+    ]
+    ```
+  - **Errores**:
+    - `user_not_found`: No se encontró al usuario con el `userId` especificado.
+    - `posts_not_found`: No se encontraron publicaciones para el usuario.
+
+---
+
+## 7. Obtener Historias Destacadas por Usuario
+- **Endpoint**: `GET /api/v1/history/get-by-user/{userId}`
+- **Método**: GET
+- **Propósito**: Recuperar las historias destacadas asociadas al usuario especificado.
+- **Parámetros**:
+  - `userId` (en la URL): ID del usuario cuyas historias destacadas se desean ver.
+- **Respuesta**:
+  - **200 OK**:
+    ```json
+    [
+      {
+        "id": "history_id_1",
+        "title": "Título de la historia destacada",
+        "image_url": "url_de_imagen_de_historia"
+      },
+      {
+        "id": "history_id_2",
+        "title": "Otro título de historia destacada",
+        "image_url": "url_de_otra_imagen_de_historia"
+      }
+    ]
+    ```
+  - **Errores**:
+    - `user_not_found`: No se encontró al usuario con el `userId` especificado.
+    - `history_not_found`: No se encontraron historias destacadas para el usuario.
+
+---
