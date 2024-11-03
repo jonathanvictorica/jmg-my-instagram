@@ -35,7 +35,7 @@ Este documento describe el modelo de datos para una plataforma de redes sociales
 
 ---
 
-### 4. User
+### 4. User_Insta
 
 | Columna                   | Tipo de Dato     | PK | FK                          | Constraints      | Descripción                     |
 |---------------------------|------------------|----|-----------------------------|------------------|---------------------------------|
@@ -100,7 +100,7 @@ Este documento describe el modelo de datos para una plataforma de redes sociales
 | history_id            | INT           | ✔  |                   | `NOT NULL`        | Identificador único de la historia |
 | title                 | VARCHAR(100)  |    |                   |                    | Título de la historia          |
 | multimedia_content_id | INT           |    | `multimedia_content.multimedia_content_id` | `NOT NULL` | ID del contenido multimedia de la historia |
-
+| orden                 | INT  |    |                   |   `NOT NULL`      | Orden de la historia          |
 ---
 
 ### 10. History_Content
@@ -220,6 +220,7 @@ CREATE TABLE history (
     history_id SERIAL PRIMARY KEY,
     title VARCHAR(100),
     multimedia_content_id INT NOT NULL,
+orden INT,
     FOREIGN KEY (multimedia_content_id) REFERENCES multimedia_content(multimedia_content_id)
 );
 
