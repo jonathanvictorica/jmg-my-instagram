@@ -1,33 +1,29 @@
+/***
+1 cliente React con una pagina web que consume via http 1 API MS golang "api-my-insta"
+la api MS golang tiene una base de datos relacional en postgresql "db-my-insta"
+la api MS golang tiene un broker de mensajes kafka 
+la api MS golang consume un s3 donde sube las imagenes en un bucket llama "bucket-my-insta"
+la api MS golang esta dockerizada para correr en EKS
+
+**/
 @startuml
-actor User as user
+!define COMPONENT component
+!define DATABASE database
+!define NODE node
 
-rectangle "Frontend" {
-    [React App]
+NODE "Cliente" as Client {
+  COMPONENT "Cliente React" as ReactClient
 }
 
-rectangle "Backend" {
-    [API REST]
-    [gRPC Service]
+NODE "Servidor" as Server {
+  COMPONENT "API Microservicio Golang" as APIMicroservice
+  DATABASE "Base de Datos PostgreSQL" as PostgreSQL
+  COMPONENT "Broker de Mensajes Kafka" as KafkaBroker
+  COMPONENT "Almacenamiento S3" as S3Storage
 }
 
-rectangle "Database" {
-    [PostgreSQL]
-}
-
-rectangle "Messaging" {
-    [Kafka Broker]
-}
-
-rectangle "Other Services" {
-    [Notification Service]
-    [Analytics Service]
-}
-
-user --> "Frontend" : Interacts
-"Frontend" --> "Backend" : HTTP/gRPC
-"Backend" --> "Database" : CRUD Operations
-"Backend" --> "Messaging" : Produce Messages
-"Messaging" --> "Backend" : Consume Events
-"Other Services" --> "Messaging" : Listen for Events
-
+ReactClient --> APIMicroservice : Consume API via HTTP
+APIMicroservice --> PostgreSQL : Acceso a Datos
+APIMicroservice --> KafkaBroker : Publica/Consume Mensajes
+APIMicroservice --> S3Storage : Sube/Accede Imágenes
 @enduml
