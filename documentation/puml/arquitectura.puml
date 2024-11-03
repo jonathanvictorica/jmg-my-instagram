@@ -1,11 +1,11 @@
-/***
+/*
 1 cliente React con una pagina web que consume via http 1 API MS golang "api-my-insta"
 la api MS golang tiene una base de datos relacional en postgresql "db-my-insta"
 la api MS golang tiene un broker de mensajes kafka 
 la api MS golang consume un s3 donde sube las imagenes en un bucket llama "bucket-my-insta"
 la api MS golang esta dockerizada para correr en EKS
 
-**/
+*/
 @startuml
 !define COMPONENT component
 !define DATABASE database
