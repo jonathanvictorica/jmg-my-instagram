@@ -1,3 +1,33 @@
 1. El usuario apreta crear history
-2. Elegi una sola imagen o video para publica y se invoca el endpoint para cargar esa imagen
-3. El usuario 
+2. Elegi una sola imagen para ser portada
+3. El usuario escribe el nombre de la historia
+4. El usuario elige guardar
+5. El sistema invoca el POST api/v1/histories
+
+{
+   "user_id"
+   "imagen_url"
+    "title"
+} retorna el id de la historia destacada
+
+errores posibles, user_not_found, history_can_not_created, image_not_found
+
+6. El usuario visualiza la historia en el perfil.
+
+-------------
+
+1. el usuario selecciona editar historia
+2. el usuario carga la imagen/video a crear
+3. el usuario digita una ubicacion de forma opcional
+4. el usuario etiqueta personas de forma opcional
+5. el usuario le da guardar
+7. el usuario etiqueta hashtags
+8. el sistema invoca POST api/v1/history-contents/{history_id}
+
+{ 
+   "user_id":"", "image_url":"", "users""[],"location_id":"", "hashtags":[] 
+} el sistema retorna el id del contenido
+
+Errores posibles
+user_not_found, location_not_found, hashtag_not_found, history_content_can_not_create, 
+
