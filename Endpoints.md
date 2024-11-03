@@ -164,3 +164,50 @@
     - `history_not_found`: No se encontraron historias destacadas para el usuario.
 
 ---
+## 8. Crear Historia
+- **Descripción**: Endpoint para crear una nueva historia destacada con un título y una imagen de portada.
+- **Endpoint**: `POST /api/v1/histories`
+- **Método**: POST
+- **Parámetros del Request**
+  ```json
+  {
+    "user_id": "ID del usuario que crea la historia",
+    "image_url": "URL de la imagen de portada",
+    "title": "Título de la historia"
+  }
+  ```
+  - **Respuesta**:
+    - **200 OK**:
+      ```json
+      { "history_id": "new_history_id" }
+      ```
+    - **Errores**:
+      - user_not_found: No se encontró el usuario especificado.
+      - history_can_not_created: Error al intentar crear la historia.
+      - image_not_found: La imagen especificada no se encontró.
+
+--
+## 9.  Agregar Contenido a la Historia
+- **Descripción**: Endpoint para agregar contenido a una historia existente, como imágenes/videos, ubicación, etiquetas de usuarios y hashtags.
+- **Endpoint**: `POST /api/v1/history-contents/{history_id}`
+- **Método**: POST
+- **Parámetros del Request**: 
+```json
+{
+  "user_id": "ID del usuario que agrega el contenido",
+  "image_url": "URL de la imagen o video",
+  "users": ["user_id_1", "user_id_2"],
+  "location_id": "ID de la ubicación (opcional)",
+  "hashtags": ["#hashtag1", "#hashtag2"]
+}
+```
+- **Respuesta**:
+  - **200 OK**:
+    ```json
+    { "history_content_id": "new_history_content_id" }
+    ```
+  - **Errores**:
+     - user_not_found: No se encontró el usuario especificado.
+     - location_not_found: No se encontró la ubicación especificada.
+     - hashtag_not_found: Algún hashtag referenciado no se encontró.
+     - history_content_can_not_create: Error al intentar agregar el contenido a la historia.
