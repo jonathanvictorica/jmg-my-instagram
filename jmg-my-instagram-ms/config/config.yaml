@@ -1,0 +1,12 @@
+database:
+  type: "SQL"
+  host: "localhost"
+  port: 5432
+  user: "postgres"
+  password: "secret"
+  name: "mydatabase"
+  sslmode: "disable"
+
+server:
+  port: "8080"
+  debug: true
